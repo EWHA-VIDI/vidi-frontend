@@ -326,7 +326,7 @@ infra: AWS 배포 환경 구성 [VIDI-35]
 
 ### 5-3. Merge 규칙
 
-- 작성자를 뛴 팀원 전원(현재 2명)을 리뷰어로 지정하고, 2명 모두 Approve해야 병합한다.
+- 작성자를 제외한 팀원 전원(현재 2명)을 리뷰어로 지정하고, 2명 모두 Approve해야 병합한다.
 - AI 리뷰봇의 리뷰는 참고한다. 승인 수에는 포함하지 않는다.
 - Request Changes가 있으면 수정 후 재리뷰를 요청한다.
 - CI가 모두 통과해야 병합한다.
@@ -342,7 +342,7 @@ infra: AWS 배포 환경 구성 [VIDI-35]
 | -------- | ---------------------------------- | --------------- |
 | P1       | 반드시 수정해야 하는 심각한 문제   | Request Changes |
 | P2       | 적극적으로 고려해야 하는 개선 사항 | Request Changes |
-| P3       | 욬만하면 반영하는 것이 좋은 사항   | Comment         |
+| P3       | 웬만하면 반영하는 것이 좋은 사항   | Comment         |
 | P4       | 선택적인 개선 사항                 | Approve         |
 | P5       | 사소한 의견 및 참고 사항           | Approve         |
 
@@ -434,80 +434,20 @@ BE·데이터 레포는 husky를 쓰지 않아도 된다. PR 제목 검사가 de
 
 ### 10-2. PR 제목 검사 워크플로
 
-`.github/workflows/pr-title.yml` (액션 버전은 적용 시 최신으로 확인)
+실제 구현은 각 레포의 `.github/workflows/pr-title.yml`과 `scripts/conventions.cjs`를 기준으로 확인한다.
 
-```yaml
-name: PR Title
-on:
-  pull_request:
-    types: [opened, edited, synchronize, reopened]
-
-jobs:
-  check:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: amannn/action-semantic-pull-request@v5
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          types: |
-            feat
-            fix
-            style
-            refactor
-            docs
-            test
-            chore
-            build
-            ci
-            perf
-            revert
-            infra
-            release
-          requireScope: false
-          subjectPattern: ^.+ \[VIDI-\d+\]$
-          subjectPatternError: 'PR 제목 끝에 [VIDI-123] 형태의 Jira 키를 넣어주세요.'
-```
+- 제목 Action과 FE commitlint는 같은 validator를 사용한다.
+- scope는 선택이며 breaking change 표기를 허용한다.
+- 허용한 type, 120자 제한, 제목 끝 Jira 키 하나를 검사한다.
+- 정상·오류 제목 회귀 검사는 `node --test scripts/conventions.test.cjs`로 실행한다.
+- workflow의 Action 버전은 검증한 commit SHA로 고정한다.
 
 ### 10-3. commitlint 설정 (FE)
 
-`commitlint.config.js`, husky의 `commit-msg` 훅에서 실행한다.
+FE의 `commitlint.config.js`와 `.husky/commit-msg`를 기준으로 확인한다.
 
-```jsx
-export default {
-  extends: ['@commitlint/config-conventional'],
-  plugins: [
-    {
-      rules: {
-        'jira-key': ({ header }) => [
-          /\[VIDI-\d+\]$/.test(header ?? ''),
-          '제목 끝에 [VIDI-123] 형태의 Jira 키가 필요합니다',
-        ],
-      },
-    },
-  ],
-  rules: {
-    'type-enum': [
-      2,
-      'always',
-      [
-        'feat',
-        'fix',
-        'style',
-        'refactor',
-        'docs',
-        'test',
-        'chore',
-        'build',
-        'ci',
-        'perf',
-        'revert',
-        'infra',
-        'release',
-      ],
-    ],
-    'subject-case': [0],
-    'jira-key': [2, 'always'],
-  },
-}
-```
+- config-conventional을 확장하고 infra·release를 포함한 type 목록을 공유한다.
+- subject-case는 강제하지 않고 Jira 제목 검사를 공통 validator에 맡긴다.
+- pre-commit은 lint-staged로 변경 파일을 검사한다.
+- commit-msg는 commitlint로 실제 커밋 메시지를 검사한다.
+- 구현과 어긋나는 설정 예제를 이 문서에 복제하지 않는다.
