@@ -15,7 +15,9 @@
     "test:run": "vitest run",
     "api:generate": "orval --config orval.config.ts",
     "verify": "npm run lint && npm run format:check && npm run typecheck && npm run test:run && npm run build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky",
+    "test:conventions": "node --test scripts/conventions.test.cjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.5",
@@ -66,5 +68,12 @@
   "engines": {
     "node": ">=24 <25",
     "npm": ">=11 <12"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "node ./node_modules/eslint/bin/eslint.js --fix",
+      "node ./node_modules/prettier/bin/prettier.cjs --write"
+    ],
+    "*.{js,mjs,cjs,json,css,md,yml,yaml}": "node ./node_modules/prettier/bin/prettier.cjs --write"
   }
 }
