@@ -32,3 +32,10 @@ npm run api:generate
 ```
 
 `src/api/generated`의 생성 코드는 직접 수정하지 않습니다. 작업 전 `AGENTS.md`와 관련 `docs/rules` 파일을 확인합니다.
+
+## 배포
+
+공통 배포 설정은 [백엔드 인프라 PR](https://github.com/EWHA-VIDI/vidi-backend/pulls)의
+`deploy/frontend.Dockerfile`, `deploy/nginx.conf`, `docs/deployment.md`에서 관리한다.
+FE 체크아웃을 build context로 사용하며 Nginx의 SPA fallback과 `/api/` 전달을 검증한다.
+로컬 화면의 [검증 스크린샷](docs/images/scaffold.png)을 참고한다.
