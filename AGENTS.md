@@ -38,5 +38,5 @@ VIDI는 유튜브 댓글의 계정·시간·문장 관계를 분석해 조직적
 - `docs/rules/00-git-convention.md`: 브랜치, 커밋, PR 규칙
 - `docs/rules/01-lint-format.md`: ESLint, Prettier, import 규칙
 - `docs/rules/02-typescript.md`: export, Props, 타입 규칙
-- `docs/rules/10-owner.md`: 담당자 2 규칙
-- `docs/rules/20-owner.md`: 담당자 3 규칙
+- `docs/rules/10-api-contract.md`: API 계약 (김서현)
+- `docs/rules/20-component-structure.md`: 컴포넌트 구조 (김미리)

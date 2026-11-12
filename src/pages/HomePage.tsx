@@ -9,7 +9,7 @@ export function HomePage() {
     <ScreenShell
       eyebrow="INVESTIGATION WORKSPACE"
       title="VIDI"
-      description="계정·시간·문장 관계를 분석하는 유튜브 바이럴 댓글 탐지 지원 도구"
+      description="계정·시간·문장 관계를 근거로 조직적 바이럴 의심 패턴을 조사하는 지원 도구"
     >
       <nav className="action-row" aria-label="시작 메뉴">
         <Link className="primary-button" to={ROUTES.login}>

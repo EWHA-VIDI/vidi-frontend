@@ -15,15 +15,7 @@
     "test:run": "vitest run",
     "api:generate": "orval --config orval.config.ts",
     "verify": "npm run lint && npm run format:check && npm run typecheck && npm run test:run && npm run build",
-    "preview": "vite preview",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{ts,tsx}": [
-      "node ./node_modules/eslint/bin/eslint.js --fix",
-      "node ./node_modules/prettier/bin/prettier.cjs --write"
-    ],
-    "*.{js,mjs,cjs,json,css,md,yml,yaml}": "node ./node_modules/prettier/bin/prettier.cjs --write"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^7.0.5",
@@ -57,6 +49,7 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.7",
+    "eslint-plugin-simple-import-sort": "^14.0.0",
     "globals": "^17.13.0",
     "husky": "^9.1.7",
     "jsdom": "^31.0.0",
