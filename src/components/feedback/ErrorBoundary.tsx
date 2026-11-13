@@ -1,21 +1,25 @@
 import type { ErrorInfo, ReactNode } from 'react'
 import { Component } from 'react'
 
+import { ErrorScreen } from '@/components/feedback/ErrorScreen'
+
 type ErrorBoundaryProps = {
   children: ReactNode
 }
 
 type ErrorBoundaryState = {
   hasError: boolean
+  error: unknown
 }
 
 export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   state: ErrorBoundaryState = {
     hasError: false,
+    error: null,
   }
 
-  static getDerivedStateFromError(): ErrorBoundaryState {
-    return { hasError: true }
+  static getDerivedStateFromError(error: unknown): ErrorBoundaryState {
+    return { hasError: true, error }
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
@@ -24,22 +28,7 @@ export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundarySt
 
   render() {
     if (this.state.hasError) {
-      return (
-        <main className="screen-center">
-          <section className="status-panel" aria-labelledby="error-title">
-            <p className="eyebrow">SYSTEM ERROR</p>
-            <h1 id="error-title">화면을 불러오지 못했습니다.</h1>
-            <p>잠시 후 다시 시도해 주세요.</p>
-            <button
-              className="primary-button"
-              type="button"
-              onClick={() => window.location.reload()}
-            >
-              새로고침
-            </button>
-          </section>
-        </main>
-      )
+      return <ErrorScreen error={this.state.error} />
     }
 
     return this.props.children

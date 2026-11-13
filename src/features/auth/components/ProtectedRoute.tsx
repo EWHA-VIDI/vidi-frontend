@@ -10,10 +10,17 @@ type ProtectedRouteProps = {
 
 export function ProtectedRoute({ allowedRoles }: ProtectedRouteProps) {
   const location = useLocation()
-  const { accessToken, role } = useAuthStore()
+  const accessToken = useAuthStore((state) => state.accessToken)
+  const role = useAuthStore((state) => state.role)
 
   if (!accessToken || !role) {
-    return <Navigate to={ROUTES.login} replace state={{ from: location.pathname }} />
+    return (
+      <Navigate
+        to={ROUTES.login}
+        replace
+        state={{ from: `${location.pathname}${location.search}${location.hash}` }}
+      />
+    )
   }
 
   if (!allowedRoles.includes(role)) {
