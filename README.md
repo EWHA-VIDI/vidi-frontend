@@ -54,3 +54,7 @@ TLS 검사 프록시 환경에서는 `docker build --secret id=proxy_ca,src=인�
 ## 담당자에게 넘기는 범위
 
 인증·공통 UI·API 타입은 [임시 뼈대 안내](docs/scaffold-handoff.md)를 기준으로 담당 이슈에서 이어서 정리합니다.
+
+## 실행 화면
+
+[초기 화면 스크린샷](docs/images/scaffold.png)을 참고합니다.
