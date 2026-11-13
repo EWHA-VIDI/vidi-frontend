@@ -1,14 +1,16 @@
-type ApiErrorNoticeProps = {
-  message: string
-  traceId?: string
-}
+import type { ApiError } from '@/types/api'
 
-export function ApiErrorNotice({ message, traceId }: ApiErrorNoticeProps) {
+type ApiErrorNoticeProps = { error: ApiError }
+
+export function ApiErrorNotice({ error }: ApiErrorNoticeProps) {
   return (
-    <section className="api-error" role="alert">
+    <section
+      className="rounded-xl border border-danger-line bg-danger-soft px-5 py-4 text-danger"
+      role="alert"
+    >
       <strong>요청을 처리하지 못했습니다.</strong>
-      <p>{message}</p>
-      {traceId ? <small>{`Trace ID: ${traceId}`}</small> : null}
+      <p className="my-1.5">{error.message}</p>
+      <small className="font-mono">{`Trace ID: ${error.traceId}`}</small>
     </section>
   )
 }
