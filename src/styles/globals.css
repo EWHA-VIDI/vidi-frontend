@@ -1,0 +1,37 @@
+@import 'tailwindcss';
+@import 'pretendard/dist/web/variable/pretendardvariable.css';
+
+/* Initial values only; the theme owner finalizes these in VIDI-33. */
+@theme {
+  --color-ink-950: #11101c;
+  --color-ink-700: #39374a;
+  --color-ink-500: #716e82;
+  --color-line: #e8e6ef;
+  --color-canvas: #f7f7fa;
+  --color-primary-700: #4824c7;
+  --color-primary-600: #6138e5;
+  --color-primary-100: #eee9ff;
+  --color-danger: #7c2020;
+  --color-danger-line: #f0caca;
+  --color-danger-soft: #fff7f7;
+  --font-sans: 'Pretendard Variable', system-ui, sans-serif;
+  --background-image-scaffold:
+    radial-gradient(
+      circle at 78% 14%,
+      color-mix(in srgb, var(--color-primary-600) 12%, transparent),
+      transparent 28rem
+    ),
+    linear-gradient(180deg, white, var(--color-canvas));
+}
+
+@layer base {
+  html {
+    @apply min-h-full min-w-80 bg-canvas;
+  }
+
+  body {
+    @apply m-0 min-h-screen min-w-80 font-sans text-ink-950;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+  }
+}
