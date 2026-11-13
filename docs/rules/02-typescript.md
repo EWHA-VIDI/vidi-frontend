@@ -25,8 +25,9 @@
 `src/components/feedback/ApiErrorNotice.tsx`의 실제 Props 선언을 사용한다.
 
 ```ts
+import type { ApiError } from '@/types/api'
+
 type ApiErrorNoticeProps = {
-  message: string
-  traceId?: string
+  error: ApiError
 }
 ```

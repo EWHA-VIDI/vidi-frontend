@@ -64,7 +64,7 @@ export default defineConfig([
     },
   })),
   {
-    files: ['src/{api,stores,components,hooks,lib,styles,types,constants}/**/*.{ts,tsx}'],
+    files: ['src/{api,stores,components,hooks,lib,styles,types,constants,test}/**/*.{ts,tsx}'],
     rules: { 'no-restricted-imports': restrictImports('^\\.|^@/(app|pages|features)(/|$)') },
   },
 ])

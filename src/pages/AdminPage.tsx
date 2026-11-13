@@ -7,7 +7,7 @@ export function AdminPage() {
       title="관리자 화면"
       description="탐지 후보, 내보내기, 가입 심사와 사용자를 관리합니다."
     >
-      <div className="placeholder-line" />
+      <div className="mt-12 h-px w-full max-w-lg bg-gradient-to-r from-primary-600 to-transparent" />
     </ScreenShell>
   )
 }
