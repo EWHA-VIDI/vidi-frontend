@@ -8,16 +8,14 @@
 - 커밋 전 `npm run lint`, `npm run format:check`, `npm run typecheck`를 실행한다.
 - PR 전 `npm run verify`와 `npm run test:conventions`를 실행한다.
 - pre-commit은 lint-staged로 변경 파일을 검사하고 commit-msg는 Jira 형식을 검사한다.
-- 내부 import는 `@/` alias를 사용하고 상위 폴더 상대 경로로 계층 검사를 우회하지 않는다.
+- src 내부 모듈은 같은 폴더를 포함한 모든 상대 경로 import를 금지하고 `@/` alias를 사용한다.
 - import 정렬은 simple-import-sort에 맡기고 `npm run lint:fix`로 정리한다.
-- pages는 features와 공통을 사용하고 features는 자신의 내부와 공통만 사용한다.
-- 공통 코드는 app, pages, features를 import하지 않는다.
+- 폴더 간 import 방향은 `docs/rules/20-folder-structure.md`를 따르고 ESLint 설정도 그 기준으로 유지한다.
 - 환경 설정은 `.env.example`에 문서화하고 VITE 접두사 값은 공개된 값으로 취급한다.
 - package.json과 Vite·TS 설정 변경은 설정 담당자에게 요청한다.
 
 ## 하지 않는 것
 
-- feature 간 직접 import와 페이지 간 조립 의존을 만들지 않는다.
 - 린트 실패를 숨기기 위해 disable 주석을 상시 사용하지 않는다.
 - `src/api/generated`와 lockfile을 손으로 포맷하지 않는다.
 - VITE 환경변수에 API 키·비밀번호를 저장하지 않는다.
