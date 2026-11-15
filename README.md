@@ -46,7 +46,7 @@ docker build -t vidi-frontend:local .
 Nginx는 SPA fallback과 `/api/` 프록시를 제공합니다. 같은 Docker 네트워크의
 `backend:8080`에 BE를 연결하고 `/healthz`와 `/healthz/backend`로 상태를 확인합니다.
 실제 배포 workflow는 배포 단계에서 FE 레포에 추가합니다. BE가 FE SHA를 받아 대신 배포하지 않습니다.
-공통 서버·DB·환경변수 기준은 [BE 배포 문서](https://github.com/EWHA-VIDI/vidi-backend/blob/infra/VIDI-14-container-deployment/docs/deployment.md)를 참고합니다.
+공통 서버·DB·환경변수 기준은 [BE 배포 문서](https://github.com/EWHA-VIDI/vidi-backend/blob/07cc3fbaed0646819d68e08b468306d8dce96d8f/docs/deployment.md)를 참고합니다.
 
 TLS 검사 프록시 환경에서는 `docker build --secret id=proxy_ca,src=인증서경로 ...`로
 빌드에만 CA를 전달하고 TLS 검증을 끄지 않습니다.
