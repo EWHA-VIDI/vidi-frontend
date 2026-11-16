@@ -37,7 +37,6 @@ export default defineConfig([
       '@typescript-eslint/consistent-type-imports': ['error', { prefer: 'type-imports' }],
       '@typescript-eslint/consistent-type-definitions': ['error', 'type'],
       '@typescript-eslint/no-explicit-any': 'error',
-      '@typescript-eslint/no-non-null-assertion': 'error',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
     },
