@@ -50,7 +50,3 @@ Nginx는 SPA fallback과 `/api/` 프록시를 제공합니다. 같은 Docker 네
 
 TLS 검사 프록시 환경에서는 `docker build --secret id=proxy_ca,src=인증서경로 ...`로
 빌드에만 CA를 전달하고 TLS 검증을 끄지 않습니다.
-
-## 담당자에게 넘기는 범위
-
-인증·공통 UI·API 타입은 [임시 뼈대 안내](docs/scaffold-handoff.md)를 기준으로 담당 이슈에서 이어서 정리합니다.
