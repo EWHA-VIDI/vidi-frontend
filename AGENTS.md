@@ -39,4 +39,7 @@ VIDI는 유튜브 댓글의 계정·시간·문장 관계를 분석해 조직적
 - `docs/rules/01-lint-format.md`: ESLint, Prettier, import 규칙
 - `docs/rules/02-typescript.md`: export, Props, 타입 규칙
 - `docs/rules/10-api-contract.md`: API 계약 (김서현)
+- `docs/rules/11-api-query.md`: API 호출 위치, orval, Query key (김서현)
+- `docs/rules/12-error-handling.md`: 에러 처리 역할 분담, traceId 표시 (김서현)
+- `docs/rules/13-state.md`: 상태 저장 위치, 인증 토큰 저장 (김서현)
 - `docs/rules/20-component-structure.md`: 컴포넌트 구조 (김미리)
